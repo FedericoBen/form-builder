@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap");
+
+:root {
+  --input-border: #b0b0b0;
+  --input-border-active: #0bbbf6;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+body {
+  min-height: 100%;
+  min-width: 100%;
+  margin: 0;
+  display: flex;
+  background-color: #eeeeee;
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  color: #363636;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: var(--input-border);
+}
+
+#root {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 28px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

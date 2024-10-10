@@ -1,0 +1,25 @@
+.container_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.container_input > input {
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 8px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+}
+
+.container_input > input:hover {
+  border-bottom: 1px var(--input-border-active) solid;
+}
+
+.container_input > input:focus {
+  border-bottom: 2px var(--input-border-active) solid;
+}
+
+.container_input > input:disabled {
+  border-bottom: none;
+}

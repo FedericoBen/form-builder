@@ -1,0 +1,30 @@
+.container_select {
+  display: flex;
+  flex-direction: column;
+}
+
+.container_select > select {
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 8px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--input-border);
+}
+
+.container_select > select:hover {
+  border-bottom: 1px var(--input-border-active) solid;
+}
+
+.container_select > select:focus {
+  border-bottom: 2px var(--input-border-active) solid;
+}
+
+.container_select > select:disabled {
+  border-bottom: none;
+}
+
+option {
+  color: #2f2f2f;
+  padding: 10px 4px;
+}
