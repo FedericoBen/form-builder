@@ -2,6 +2,7 @@ import { create } from "zustand";
 import INPUT_BASE_SCHEMA from "../../components/basics/input/constants";
 import { SELECT_PROPS_BASE } from "../../common/dictionary-components";
 import { persist, createJSONStorage } from "zustand/middleware";
+import capitalize from "../../utils/capitalize";
 
 const updateForm = (oldFormSchema, newSection) =>
   oldFormSchema.map((section) =>
@@ -27,6 +28,15 @@ const useFormStore = create(
             },
           ],
         })),
+      deleteSection: (idSection) =>
+        set((state) => ({
+          ...state,
+          sectionSelected: state.sectionSelected.id !== idSection ? state.sectionSelected:null,
+          openMenu:state.openMenu && state.sectionSelected.id !== idSection,
+          formSchema: state.formSchema
+            .filter((section) => section.id !== idSection)
+            .map((section, index) => ({ ...section, position: index })),
+        })),
       addComponent: () =>
         set((state) => {
           const newSection = {
@@ -38,9 +48,24 @@ const useFormStore = create(
                 position: state.sectionSelected.components.length,
                 editmenuopen: false,
                 name: `Input ${state.sectionSelected.components.length}`,
+                size: 50,
                 ...INPUT_BASE_SCHEMA,
               },
             ],
+          };
+          return {
+            ...state,
+            formSchema: updateForm(state.formSchema, newSection),
+            sectionSelected: newSection,
+          };
+        }),
+      deleteComponent: (idComponent) =>
+        set((state) => {
+          const newSection = {
+            ...state.sectionSelected,
+            components: state.sectionSelected.components
+              .filter((component) => component.id !== idComponent)
+              .map((component, index) => ({ ...component, position: index })),
           };
           return {
             ...state,

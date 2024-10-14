@@ -2,9 +2,18 @@ import styles from "./Select.module.css";
 
 import React from "react";
 
-const Select = ({ name, listElements = [], elementSelected, ...props }) => {
+const Select = ({
+  name,
+  listElements = [],
+  elementSelected,
+  size,
+  ...props
+}) => {
   return (
-    <label className={styles.container_select}>
+    <label
+      style={{ width: `${isNaN(size) ? 50 : size}%` }}
+      className={styles.container_select}
+    >
       <p>{name}</p>
       <select {...props}>
         <option>-selecciona-</option>

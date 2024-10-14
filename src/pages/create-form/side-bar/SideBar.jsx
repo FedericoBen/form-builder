@@ -1,4 +1,5 @@
 import Button from "../../../components/basics/button/Button";
+import Input from "../../../components/basics/input/Input";
 import MenuInput from "../../../components/basics/input/MenuInput";
 import MenuSelect from "../../../components/basics/select/MenuSelect";
 import Select from "../../../components/basics/select/Select";
@@ -19,6 +20,7 @@ const SideBar = () => {
     (state) => state.changeElementProperties
   );
   const addComponent = useFormStore((state) => state.addComponent);
+  const deleteComponent = useFormStore((state) => state.deleteComponent);
   const openMenu = useFormStore((state) => state.openMenu);
   const setOpenMenu = useFormStore((state) => state.setOpenMenu);
 
@@ -40,7 +42,15 @@ const SideBar = () => {
           const MenuElement = MENU_OPTION[component.element];
           return (
             <span className={styles.container_element} key={component.id}>
-              <h3>{component.name}</h3>
+              <span className={styles.header_container_element}>
+                <h3>{component.name} </h3>
+                <Button
+                  className={styles.button_close}
+                  onClick={() => deleteComponent(component.id)}
+                >
+                  x
+                </Button>
+              </span>
               <p
                 onClick={() => openMenuContainerComponent(component.id)}
                 className={styles.edit_element}
@@ -51,6 +61,18 @@ const SideBar = () => {
                     {...component}
                     listElements={component.listElements}
                     changeElementProperties={changeElementProperties}
+                  />
+                  <Input
+                    name="Size element (%)"
+                    placeholder="50"
+                    type="number"
+                    onChange={(e) =>
+                      changeElementProperties(
+                        e.target.value,
+                        component.id,
+                        "size"
+                      )
+                    }
                   />
                   <Select
                     name={"Component"}
