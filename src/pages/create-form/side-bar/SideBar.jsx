@@ -1,25 +1,27 @@
-import ELEMENTS from "../../../common/disctionary-components";
 import Button from "../../../components/basics/button/Button";
 import MenuInput from "../../../components/basics/input/MenuInput";
 import MenuSelect from "../../../components/basics/select/MenuSelect";
 import Select from "../../../components/basics/select/Select";
+import useFormStore from "../../../store/form-store";
 import styles from "./SideBar.module.css";
-
-import React, { useState } from "react";
 
 const MENU_OPTION = {
   input: MenuInput,
   select: MenuSelect,
 };
 
-const SideBar = ({
-  sectionSelected,
-  openMenuContainerComponent,
-  changeElementProperties,
-  addComponent,
-  setOpenMenu,
-  openMenu,
-}) => {
+const SideBar = () => {
+  const sectionSelected = useFormStore((state) => state.sectionSelected);
+  const openMenuContainerComponent = useFormStore(
+    (state) => state.openMenuContainerComponent
+  );
+  const changeElementProperties = useFormStore(
+    (state) => state.changeElementProperties
+  );
+  const addComponent = useFormStore((state) => state.addComponent);
+  const openMenu = useFormStore((state) => state.openMenu);
+  const setOpenMenu = useFormStore((state) => state.setOpenMenu);
+
   if (!openMenu) return null;
 
   return (
@@ -35,12 +37,10 @@ const SideBar = ({
           </Button>
         </span>
         {sectionSelected?.components.map((component) => {
-          const Element = ELEMENTS[component.element];
           const MenuElement = MENU_OPTION[component.element];
           return (
             <span className={styles.container_element} key={component.id}>
-              <h3>{`Component ${component.position}`}</h3>
-              <Element disabled={true} {...component} />
+              <h3>{component.name}</h3>
               <p
                 onClick={() => openMenuContainerComponent(component.id)}
                 className={styles.edit_element}
@@ -53,7 +53,7 @@ const SideBar = ({
                     changeElementProperties={changeElementProperties}
                   />
                   <Select
-                    name={"Type"}
+                    name={"Component"}
                     listElements={[
                       { id: "input", nameOption: "input", value: "input" },
                       { id: "select", nameOption: "select", value: "select" },

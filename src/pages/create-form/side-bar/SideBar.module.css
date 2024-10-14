@@ -33,7 +33,7 @@
 .container_element {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 40px;
   transition: height 0.5s;
   interpolate-size: "allow-keywords";
   height: max-content;
