@@ -31,7 +31,7 @@ const useFormStore = create(
       deleteSection: (idSection) =>
         set((state) => ({
           ...state,
-          sectionSelected: state.sectionSelected.id !== idSection ? state.sectionSelected:null,
+          sectionSelected: state.sectionSelected?.id !== idSection ? state.sectionSelected:null,
           openMenu:state.openMenu && state.sectionSelected.id !== idSection,
           formSchema: state.formSchema
             .filter((section) => section.id !== idSection)
